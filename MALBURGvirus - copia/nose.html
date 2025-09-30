@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="annerillanabalon@gmail.cl">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <title>TShoy - Virus de Marburg</title>
+
+    <style>
+        /* Paleta de colores: Navy (#2F4156), Teal (#567C8D), Beige (#F5EFEB), Sky Blue (#C8D9E6), White (#FFFFFF) */
+        :root {
+            --bs-navy: #2F4156;
+            --bs-teal: #567C8D;
+            --bs-beige: #F5EFEB;
+            --bs-sky-blue: #C8D9E6;
+            --bs-white: #FFFFFF;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bs-beige);
+            color: var(--bs-navy);
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            background-color: var(--bs-white) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 0.75rem 0;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            color: var(--bs-navy) !important;
+            font-size: 1.8rem;
+        }
+
+        .nav-link-custom {
+            color: var(--bs-navy) !important;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            margin: 0 1rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0.75rem !important;
+        }
+
+        .nav-link-custom:hover {
+            color: var(--bs-teal) !important;
+        }
+
+        .nav-link-custom::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--bs-teal);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link-custom:hover::after {
+            width: 100%;
+        }
+
+        .btn-outline-primary {
+            color: var(--bs-teal) !important;
+            border-color: var(--bs-teal) !important;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: var(--bs-teal) !important;
+            color: var(--bs-white) !important;
+        }
+
+        .hero-section {
+            background-color: var(--bs-sky-blue);
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: var(--bs-navy);
+        }
+
+        .btn-primary {
+            background-color: var(--bs-navy);
+            border-color: var(--bs-navy);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--bs-teal);
+            border-color: var(--bs-teal);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-section-light {
+            padding: 3.5rem 0;
+            background-color: var(--bs-white);
+        }
+
+        .content-section-dark {
+            padding: 3.5rem 0;
+            background-color: var(--bs-beige);
+            color: var(--bs-navy);
+        }
+
+        .card {
+            border: none;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .footer-section {
+            background-color: var(--bs-navy);
+            padding: 2.5rem 0;
+            color: var(--bs-white);
+        }
+
+        .footer-section a {
+            color: var(--bs-sky-blue) !important;
+        }
+
+        .text-light-blue {
+            color: var(--bs-teal) !important;
+        }
+
+        .btn-custom {
+            background-color: var(--bs-teal);
+            color: var(--bs-white);
+            border-radius: 50px;
+            padding: 12px 30px;
+            border: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: var(--bs-navy);
+            color: var(--bs-white);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .text-muted {
+            color: var(--bs-white) !important;
+        }
+
+        /* Mejoras para móviles */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 3rem 0;
+            }
+            
+            .display-4 {
+                font-size: 2.2rem;
+            }
+            
+            .display-6 {
+                font-size: 1.8rem;
+            }
+            
+            .lead {
+                font-size: 1rem;
+            }
+
+            .content-section-light,
+            .content-section-dark {
+                padding: 2.5rem 0;
+            }
+
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+            
+            .btn, .btn-custom {
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
+            
+            .text-center-mobile {
+                text-align: center !important;
+            }
+            
+            .img-fluid {
+                max-height: 280px;
+                object-fit: cover;
+                margin-bottom: 1.5rem;
+            }
+            
+            /* Ajustar espaciado en secciones con imágenes y texto */
+            .order-1, .order-2 {
+                margin-bottom: 1.5rem;
+            }
+            
+            /* Mejorar legibilidad de párrafos en móviles */
+            p {
+                line-height: 1.6;
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Para pantallas muy pequeñas (menos de 400px) */
+        @media (max-width: 400px) {
+            .display-4 {
+                font-size: 1.9rem;
+            }
+            
+            .display-6 {
+                font-size: 1.6rem;
+            }
+            
+            .hero-section {
+                padding: 2rem 0;
+            }
+            
+            .navbar-brand {
+                font-size: 1.3rem;
+            }
+            
+            .nav-link-custom {
+                font-size: 0.9rem;
+                margin: 0 0.5rem;
+            }
+        }
+
+        /* Animaciones personalizadas */
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Efecto de flotación para imágenes */
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* Mejora para el menú móvil */
+        .navbar-toggler {
+            border: none;
+            padding: 0;
+            width: 30px;
+            height: 20px;
+            position: relative;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        .navbar-toggler-icon {
+            background-image: none;
+            width: 30px;
+            height: 2px;
+            background-color: var(--bs-navy);
+            display: block;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggler-icon::before,
+        .navbar-toggler-icon::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 2px;
+            background-color: var(--bs-navy);
+            left: 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggler-icon::before {
+            top: -8px;
+        }
+
+        .navbar-toggler-icon::after {
+            top: 8px;
+        }
+
+        .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+            background-color: transparent;
+        }
+
+        .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
+            transform: rotate(45deg);
+            top: 0;
+        }
+
+        .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
+            transform: rotate(-45deg);
+            top: 0;
+        }
+
+        /* Mejoras para el menú colapsable */
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                background-color: var(--bs-white);
+                padding: 1rem;
+                border-radius: 0.375rem;
+                box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+                margin-top: 0.5rem;
+            }
+
+            .nav-link-custom {
+                display: block;
+                margin: 0.5rem 0;
+                padding: 0.5rem 1rem;
+                text-align: center;
+            }
+
+            .nav-link-custom::after {
+                display: none;
+            }
+            
+            .navbar-nav.ms-auto {
+                width: 100%;
+            }
+        }
+        
+        /* Ajustes para tablets */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .display-4 {
+                font-size: 2.4rem;
+            }
+            
+            .hero-section {
+                padding: 4.5rem 0;
+            }
+            
+            .content-section-light, 
+            .content-section-dark {
+                padding: 3rem 0;
+            }
+            
+            .img-fluid {
+                max-height: 350px;
+                object-fit: cover;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">TodoSobre.</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link-custom mx-2" href="index.html">INICIO</a>
+                    <a class="nav-link-custom mx-2" href="mas.html">CAUSAS Y SÍNTOMAS</a>
+                    <a class="nav-link-custom mx-2" href="nose.html">HOY EN DIA</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section text-center text-md-start">
+        <div class="container hero-content">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+                    <h1 class="display-4 fw-bold mb-3">
+                        Cómo es el virus hoy en día?
+                    </h1>
+                    <p class="lead mb-4">
+                        El virus de Marburg, sigue siendo hoy en día una amenaza grave para la salud pública global, con
+                        brotes esporádicos pero de alta letalidad. Según la OMS, se clasifica como un patógeno de
+                        Prioridad Máxima (Grupo de Riesgo 4), debido a su alta tasa de mortalidad (entre 24% y 88%),
+                        la ausencia de tratamientos específicos y su potencial para causar epidemias.
+                    </p>
+                    <div class="d-flex flex-wrap">
+                        <a href="https://www.who.int/es/news-room/questions-and-answers/item/marburg-virus-disease"
+                            class="btn btn-primary btn-lg rounded-pill me-2 mb-2" target="_blank">Saber más...</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center" data-aos="fade-left">
+                    <img src="static/images/cosiitaaa.webp" class="img-fluid float-animation"
+                        alt="Representación del virus de Marburg" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 order-2 order-md-1 text-center" data-aos="zoom-in">
+                    <img src="static/images/Illustration-of-the-Tanzanian-map-1.jpg" class="img-fluid rounded shadow"
+                        alt="Mapa de Tanzania mostrando el brote de Marburg" loading="lazy">
+                </div>
+                <div class="col-md-6 order-1 order-md-2 text-center text-md-start mb-4 mb-md-0" data-aos="fade-left">
+                    <h2 class="display-6 fw-bold mb-3">
+                        Último brote: Tanzania
+                    </h2>
+                    <p class="mb-4">
+                        El brote, declarado y controlado en enero de 2025, registró 10 casos (2 confirmados + 8
+                        probables) con 100% de letalidad. Se monitorearon 272 contactos, donde 270 completaron el
+                        seguimiento sin síntomas. La detección tardía impidió una respuesta temprana, y la OMS advierte
+                        que el riesgo de resurgencia persiste por el reservorio animal. La OMS apoyó técnicamente la
+                        contención.
+                    </p>
+                    <a href="https://gacetamedica.com/investigacion/tanzania-declara-el-fin-del-brote-del-virus-de-marburgo/#:~:text=El%20Ministerio%20de%20Salud%20de,riesgos%20y%20la%20participaci%C3%B3n%20comunitaria."
+                        class="btn btn-custom rounded-pill me-2" target="_blank">Saber más...</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section-dark">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center mb-4 mb-md-0" data-aos="zoom-in">
+                    <img src="static/images/images (2).jpeg" class="img-fluid rounded shadow"
+                        alt="Investigación de vacuna para el virus de Marburg" loading="lazy">
+                </div>
+                <div class="col-md-6 text-center text-md-start" data-aos="fade-right">
+                    <p class="text-light-blue fw-bold mb-2">
+                        ¿Hay alguna
+                    </p>
+                    <h2 class="display-6 fw-bold mb-3">
+                        Vacuna?
+                    </h2>
+                    <p class="mb-4">
+                        Actualmente no existe ninguna vacuna aprobada oficialmente contra el virus de Marburg. Sin
+                        embargo, varios candidatos vacunales se encuentran en desarrollo, mostrando resultados
+                        prometedores en etapas experimentales. Entre las más avanzadas destacan las vacunas de ARN
+                        mensajero, con tecnología similar a la utilizada contra el COVID-19, que se hallan en fase de
+                        pruebas preclínicas y ensayos tempranos. Paralelamente, se investigan vacunas basadas en
+                        vectores virales, adaptaciones de plataformas originalmente desarrolladas para el ébola, que han
+                        demostrado eficacia en modelos animales.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 order-2 order-md-1 text-center" data-aos="zoom-in">
+                    <img src="static/images/images (3).jpeg" class="img-fluid rounded shadow"
+                        alt="Tratamiento para el virus de Marburg" loading="lazy">
+                </div>
+                <div class="col-md-6 order-1 order-md-2 text-center text-md-start mb-4 mb-md-0" data-aos="fade-left">
+                    <p class="text-light-blue fw-bold mb-2">
+                        Entonces, ¿cómo es el
+                    </p>
+                    <h2 class="display-6 fw-bold mb-3">
+                        TRATAMIENTO?
+                    </h2>
+                    <p class="mb-4">
+                        No existe tratamiento antiviral específico aprobado. El manejo se basa en soporte intensivo:
+                        hidratación intravenosa, control de síntomas (fiebre, dolor), transfusiones para sangrados y
+                        soporte orgánico (diálisis si es necesario).
+                        <br><br>
+                        En investigación hay terapias experimentales como anticuerpos monoclonales (ej: mAb114) y
+                        antivirales (remdesivir), aunque sin eficacia confirmada.
+                        <br><br>
+                        Los desafíos son diagnóstico tardío, infraestructura limitada en zonas endémicas y letalidad
+                        alta (24-88%). La prevención (aislamiento, equipos de protección y rastreo de contactos) sigue
+                        siendo clave.
+                    </p>
+                    <a href="https://www.who.int/es/news-room/questions-and-answers/item/marburg-virus-disease"
+                        class="btn btn-primary btn-lg rounded-pill me-2 mb-2" target="_blank">Saber más...</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-section">
+        <div class="container text-center text-md-start">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <p class="mb-1">&copy; Copyright 2025 TodoSobre. All rights reserved.</p>
+                    <p class="small text-muted">
+                        <a href="#" class="text-decoration-none text-muted">Terms of Service</a> |
+                        <a href="#" class="text-decoration-none text-muted">Privacy</a>
+                    </p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-light mx-2"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-light mx-2"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="text-light mx-2"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Inicializar AOS (Animate On Scroll)
+        document.addEventListener('DOMContentLoaded', function () {
+            AOS.init({
+                duration: 1000,
+                once: true,
+                offset: 100,
+                disable: function() {
+                    return window.innerWidth < 768;
+                }
+            });
+
+            // Agregar smooth scrolling a todos los enlaces
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Cerrar menú móvil al hacer clic en un enlace
+            const navLinks = document.querySelectorAll('.nav-link-custom');
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            const navbarCollapse = document.querySelector('.navbar-collapse');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navbarCollapse.classList.contains('show')) {
+                        navbarToggler.click();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

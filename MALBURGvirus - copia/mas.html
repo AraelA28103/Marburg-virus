@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="annerillanabalon@gmail.cl">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <title>TodoSobre - Virus Marburg</title>
+
+    <style>
+        :root {
+            --bs-navy: #2F4156;
+            --bs-teal: #567C8D;
+            --bs-beige: #F5EFEB;
+            --bs-sky-blue: #C8D9E6;
+            --bs-white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bs-white);
+            color: var(--bs-navy);
+            padding-top: 80px;
+        }
+
+        .bg-custom-navy {
+            background-color: var(--bs-navy);
+        }
+
+        .bg-custom-beige {
+            background-color: var(--bs-beige);
+        }
+
+        .bg-custom-teal {
+            background-color: var(--bs-teal);
+        }
+
+        .bg-custom-sky-blue {
+            background-color: var(--bs-sky-blue);
+        }
+
+        .text-custom-navy {
+            color: var(--bs-navy);
+        }
+
+        .text-custom-teal {
+            color: var(--bs-teal);
+        }
+
+        .text-custom-sky-blue {
+            color: var(--bs-sky-blue);
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: var(--bs-white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-weight: 700;
+            color: var(--bs-navy);
+        }
+
+        .nav-link-custom {
+            color: var(--bs-navy);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-link-custom:hover {
+            color: var(--bs-teal);
+        }
+
+        .nav-link-custom::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--bs-teal);
+            transition: width 0.3s;
+        }
+
+        .nav-link-custom:hover::after {
+            width: 100%;
+        }
+
+        .card-custom {
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .card-custom:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .icon-circle {
+            width: 70px;
+            height: 70px;
+            background-color: var(--bs-sky-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .card-custom:hover .icon-circle {
+            transform: scale(1.1);
+            background-color: var(--bs-teal);
+        }
+
+        .icon-circle img {
+            max-width: 70%;
+            max-height: 70%;
+        }
+
+        .symptom-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .symptom-card:hover {
+            transform: scale(1.03);
+        }
+
+        .symptom-img {
+            height: 180px;
+            object-fit: cover;
+        }
+
+        /* Efecto de galería con zoom */
+        .symptom-gallery-item {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .symptom-gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        /* Estilos de animación */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadein {
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+
+        /* Animación de máquina de escribir */
+        .typewriter h1 {
+            overflow: hidden;
+            /* Oculta el texto que se desborda */
+            white-space: nowrap;
+            /* Evita que el texto se salte de línea */
+            border-right: 3px solid var(--bs-teal);
+            /* Efecto de cursor */
+            animation: typing 2.5s steps(22, end),
+                blink-caret .75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0
+            }
+
+            to {
+                width: 100%
+            }
+        }
+
+        @keyframes blink-caret {
+
+            from,
+            to {
+                border-color: transparent
+            }
+
+            50% {
+                border-color: var(--bs-teal);
+            }
+        }
+
+        /* Footer */
+        #footer {
+            background-color: var(--bs-navy);
+            color: var(--bs-white);
+        }
+
+        #footer a {
+            color: var(--bs-white);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        #footer a:hover {
+            opacity: 0.8;
+        }
+
+        .social-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Responsividad mejorada */
+        @media (max-width: 992px) {
+            .display-4 {
+                font-size: 2.2rem;
+            }
+
+            .display-5 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+
+            .display-4 {
+                font-size: 1.8rem;
+            }
+
+            .display-5 {
+                font-size: 1.5rem;
+            }
+
+            .icon-circle {
+                width: 60px;
+                height: 60px;
+            }
+
+            .card-custom {
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .hero-content .lead {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .display-4 {
+                font-size: 1.6rem;
+            }
+
+            .card-body {
+                padding: 1rem;
+            }
+
+            .symptom-img {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="container-fluid py-3">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light p-0">
+                <a class="navbar-brand logo" href="#">TodoSobre.</a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                    aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link-custom mx-3">INICIO</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="mas.html" class="nav-link-custom mx-3">CAUSAS Y SÍNTOMAS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="nose.html" class="nav-link-custom mx-3">HOY EN DIA</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="container-fluid bg-custom-beige py-5 mt-5">
+        <div class="container py-4">
+            <div class="row align-items-center">
+                <div class="col-lg-6 animate-fadein">
+                    <p class="h6 fw-bold text-custom-teal mb-3">Causas y Síntomas</p>
+                    <div class="typewriter">
+                        <h1 class="display-4 fw-bold text-custom-navy mb-4">Transmisión</h1>
+                    </div>
+                    <p class="lead mb-4">El virus de Marburg se transmite al ser humano tras una exposición prolongada a
+                        cuevas o minas habitadas por murciélagos de la fruta (<em>Rousettus</em>), sus reservorios
+                        naturales.
+                        Es importante destacar que la transmisión solo ocurre cuando los infectados
+                        presentan síntomas activos.</p>
+                    <button class="btn btn-custom-navy rounded-pill px-4 py-2" data-bs-toggle="modal"
+                        data-bs-target="#infoModal">Más información</button>
+                </div>
+                <div class="col-lg-6 d-flex justify-content-center animate-fadein delay-1">
+                    <img src="static/images/_125904274_gettyimages-1289422532.jpg" alt="Contagio"
+                        class="img-fluid rounded shadow" width="500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-custom-teal text-white">
+                    <h5 class="modal-title" id="infoModalLabel">Detalles sobre la transmisión</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>La transmisión del virus de Marburg es un proceso complejo que se inicia con el contacto con
+                        animales huéspedes, principalmente murciélagos frugívoros de la especie Rousettus. Estos
+                        murciélagos son portadores asintomáticos del virus.</p>
+                    <p>Una vez que el virus salta a los humanos, la propagación se intensifica por el contacto directo
+                        con fluidos corporales de personas enfermas. Es crucial mantener la higiene y el uso de equipo
+                        de protección personal en entornos de salud para prevenir la transmisión nosocomial.</p>
+                    <h6>¿Sabías que...?</h6>
+                    <ul class="list-unstyled">
+                        <li><i class="bi bi-pin-fill text-custom-teal me-2"></i>El primer brote documentado ocurrió en
+                            1967 en Marburgo y Fráncfort (Alemania) y en Belgrado (Serbia).</li>
+                        <li><i class="bi bi-pin-fill text-custom-teal me-2"></i>El virus puede persistir en el semen de
+                            los supervivientes durante meses.</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="container py-5 my-4">
+        <div class="text-center mb-5 animate-fadein">
+            <h2 class="display-5 fw-bold text-custom-navy mb-3">Modos de CONTAGIO</h2>
+            <p class="lead text-muted">Conoce las principales formas de transmisión del virus</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4 animate-fadein delay-1">
+                <div class="card card-custom p-4 h-100 text-center">
+                    <div class="icon-circle">
+                        <img src="static/images/foot.webp" alt="Animal" class="img-fluid">
+                    </div>
+                    <h3 class="h5 fw-bold text-custom-navy mb-3">Animal a Humano</h3>
+                    <p class="text-muted">La transmisión inicial a los humanos ocurre por la exposición prolongada a
+                        minas o cuevas donde habitan colonias de murciélagos frugívoros de la especie Rousettus, que son
+                        los huéspedes naturales del virus.</p>
+                </div>
+            </div>
+            <div class="col-md-4 animate-fadein delay-2">
+                <div class="card card-custom p-4 h-100 text-center">
+                    <div class="icon-circle">
+                        <img src="static/images/person.png" alt="Personas" class="img-fluid">
+                    </div>
+                    <h3 class="h5 fw-bold text-custom-navy mb-3">Contacto con personas infectadas</h3>
+                    <p class="text-muted">Una vez que el virus circula entre humanos, la principal forma de contagio es
+                        el contacto directo con sangre, secreciones, órganos u otros fluidos corporales (como saliva,
+                        vómito, heces o semen) de una persona infectada con síntomas.</p>
+                </div>
+            </div>
+            <div class="col-md-4 animate-fadein delay-3">
+                <div class="card card-custom p-4 h-100 text-center">
+                    <div class="icon-circle">
+                        <img src="static/images/7517587.png" alt="Superficies" class="img-fluid">
+                    </div>
+                    <h3 class="h5 fw-bold text-custom-navy mb-3">Contacto con superficies contaminadas</h3>
+                    <p class="text-muted">El virus también puede propagarse al tocar materiales o superficies
+                        contaminadas con fluidos de un paciente, como la ropa personal, de cama o agujas usadas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-5 my-4">
+        <div class="text-center mb-5 animate-fadein">
+            <h2 class="display-5 fw-bold text-custom-navy mb-3">SÍNTOMAS</h2>
+            <p class="lead text-muted">El virus de Marburg presenta dos fases claramente diferenciadas</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 animate-fadein delay-1">
+                <div class="card h-100 symptom-card">
+                    <div class="row g-0 h-100">
+                        <div class="col-md-5">
+                            <div id="symptomsCarousel1" class="carousel slide h-100" data-bs-ride="carousel">
+                                <div class="carousel-inner h-100">
+                                    <div class="carousel-item active h-100">
+                                        <img src="static/images/images.jpeg"
+                                            class="d-block w-100 h-100 symptom-gallery-item" alt="Fiebre">
+                                    </div>
+                                    <div class="carousel-item h-100">
+                                        <img src="static/images/symptom_initial_2.jpg"
+                                            class="d-block w-100 h-100 symptom-gallery-item" alt="Dolor de cabeza">
+                                    </div>
+                                    <div class="carousel-item h-100">
+                                        <img src="static/images/symptom_initial_3.jpg"
+                                            class="d-block w-100 h-100 symptom-gallery-item" alt="Malestar general">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#symptomsCarousel1"
+                                    data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#symptomsCarousel1"
+                                    data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="card-body d-flex flex-column h-100">
+                                <h5 class="card-title h6 text-custom-navy mb-3">FASE INICIAL</h5>
+                                <p class="card-text text-muted small flex-grow-1">La fase inicial de la enfermedad por
+                                    virus de
+                                    Marburg se presenta de forma brusca con síntomas inespecíficos como fiebre alta,
+                                    dolor de cabeza
+                                    intenso, malestar general y dolor muscular pronunciado, especialmente en la espalda,
+                                    acompañados de debilidad extrema y escalofríos. Esta similitud con enfermedades
+                                    comunes como
+                                    malaria o dengue complica el diagnóstico temprano.</p>
+                                <div class="mt-2">
+                                    <span class="badge bg-primary">Síntomas iniciales</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 animate-fadein delay-2">
+                <div class="card h-100 symptom-card">
+                    <div class="row g-0 h-100">
+                        <div class="col-md-5">
+                            <div id="symptomsCarousel2" class="carousel slide h-100" data-bs-ride="carousel">
+                                <div class="carousel-inner h-100">
+                                    <div class="carousel-item active h-100">
+                                        <img src="static/images/oo.webp"
+                                            class="d-block w-100 h-100 symptom-gallery-item" alt="Sangrado">
+                                    </div>
+                                    <div class="carousel-item h-100">
+                                        <img src="static/images/symptom_advanced_2.jpg"
+                                            class="d-block w-100 h-100 symptom-gallery-item" alt="Diarrea">
+                                    </div>
+                                    <div class="carousel-item h-100">
+                                        <img src="static/images/symptom_advanced_3.jpg"
+                                            class="d-block w-100 h-100 symptom-gallery-item" alt="Erupción cutánea">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#symptomsCarousel2"
+                                    data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#symptomsCarousel2"
+                                    data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="card-body d-flex flex-column h-100">
+                                <h5 class="card-title h6 text-custom-navy mb-3">FASE AVANZADA</h5>
+                                <p class="card-text text-muted small flex-grow-1">A partir del tercer al quinto día, la
+                                    enfermedad avanza a una fase más grave. En esta etapa aparecen diarrea acuosa
+                                    intensa, dolor abdominal y
+                                    calambres, acompañados de náuseas, vómitos persistentes y erupciones cutáneas.
+                                    Además,
+                                    se manifiestan síntomas hemorrágicos, como sangrado de encías, nariz, presencia de
+                                    sangre en heces o vómito, y moretones sin causa aparente.</p>
+                                <div class="mt-2">
+                                    <span class="badge bg-danger">Fase crítica</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer" class="container-fluid py-5 mt-5">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-1">&copy; Copyright 2025 TodoSobre. All rights reserved.</p>
+                    <p class="small mb-0">
+                        <a href="#" class="me-3">Terms of Service</a> |
+                        <a href="#">Privacy</a>
+                    </p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3">
+                        <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="static/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const animatedElements = document.querySelectorAll('.animate-fadein');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.visibility = 'visible';
+                        entry.target.classList.add('animate-fadein');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            animatedElements.forEach(el => {
+                el.style.visibility = 'hidden';
+                observer.observe(el);
+            });
+
+            // Smooth scroll para enlaces internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Este script no necesita modificaciones, ya que las nuevas funcionalidades se basan en Bootstrap.
+        // Lo único que se podría agregar es un control para el modal, pero el 'data-bs-toggle' y 'data-bs-target' lo manejan por sí solos.
+    </script>
+</body>
+
+</html>

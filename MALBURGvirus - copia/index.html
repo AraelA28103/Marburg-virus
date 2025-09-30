@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="annerillanabalon@gmail.cl">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        /* Paleta de colores: Navy (#2F4156), Teal (#567C8D), Beige (#F5EFEB), Sky Blue (#C8D9E6), White (#FFFFFF) */
+
+        :root {
+            --primary-color: #2F4156; /* Navy */
+            --success-color: #567C8D; /* Teal */
+            --danger-color: #C8D9E6; /* Sky Blue */
+            --dark-color: #2F4156; /* Navy */
+            --bg-body: #FFFFFF; /* White */
+            --bg-header: #FFFFFF; /* White */
+            --bg-cta: #F5EFEB; /* Beige */
+            --bg-footer: #2F4156; /* Navy */
+            --text-light: #FFFFFF; /* White */
+            --text-dark: #2F4156; /* Navy */
+            --text-accent: #567C8D; /* Teal */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+        }
+
+        .nav-link-custom {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link-custom:hover {
+            color: var(--text-accent);
+        }
+
+        .logo {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        #hero-image {
+            position: relative;
+        }
+
+        #hero-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(47, 65, 86, 0.5); /* Navy con transparencia */
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            background-color: var(--bg-body);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .border-success {
+            border-color: var(--success-color) !important;
+        }
+
+        .border-primary {
+            border-color: var(--primary-color) !important;
+        }
+
+        .border-danger {
+            border-color: var(--danger-color) !important;
+        }
+
+        #cta {
+            background-color: var(--bg-cta);
+        }
+
+        #footer {
+            background-color: var(--bg-footer);
+            color: var(--text-light);
+        }
+
+        #footer a {
+            color: var(--text-light) !important;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: #263645; /* Un tono más oscuro de Navy */
+            border-color: #263645;
+        }
+        
+        .bg-light {
+            background-color: var(--bg-header) !important;
+        }
+        
+        .text-success {
+            color: var(--success-color) !important;
+        }
+
+        .text-primary {
+            color: var(--primary-color) !important;
+        }
+        
+        .text-danger {
+            color: var(--danger-color) !important;
+        }
+        
+        .text-muted {
+            color: #6c757d !important; /* Mantenemos este color para un contraste legible */
+        }
+
+        /* Responsividad mejorada */
+        @media (max-width: 768px) {
+            .display-4 {
+                font-size: 2rem;
+            }
+
+            .hero-content {
+                padding: 1rem !important;
+            }
+
+            .card-body {
+                padding: 1rem;
+            }
+
+            .card-text {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .card .row {
+                flex-direction: column;
+            }
+
+            .card .col-4,
+            .card .col-8 {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .card img {
+                height: 200px !important;
+            }
+        }
+    </style>
+    <title>TSmarburgvirus</title>
+</head>
+
+<body>
+     <header class="container-fluid py-3">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light p-0">
+                <a class="navbar-brand logo" href="#">TodoSobre.</a>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" 
+                    aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link-custom mx-3">INICIO</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="mas.html" class="nav-link-custom mx-3">CAUSAS Y SÍNTOMAS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="nose.html" class="nav-link-custom mx-3">HOY EN DIA</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" style="color: var(--text-dark);">TodoSobre.</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="d-flex flex-column">
+                <a href="index.html" class="nav-link-custom py-2">INICIO</a>
+                <a href="mas.html" class="nav-link-custom py-2">CAUSAS Y SÍNTOMAS</a>
+                <a href="nose.html" class="nav-link-custom py-2">HOY EN DIA</a>
+            </div>
+        </div>
+    </div>
+
+    <section id="hero-image" class="d-flex align-items-center justify-content-center text-center text-white"
+        style="background-image: url('static/images/Marburg_virus.jpg'); background-size: cover; background-position: center; min-height: 80vh;">
+        <div class="hero-content p-3 p-md-4">
+            <h2 class="display-4 fw-bold mb-3 mb-md-4">MARBURGVIRUS<br>La Sombra en el Corazón de África.</h2>
+            <a href="#features" class="btn btn-primary btn-lg mt-3">Conocer más</a>
+        </div>
+    </section>
+
+    <section id="features" class="container py-5">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="p-3 p-md-4 border border-1 border-success h-100">
+                    <h3 class="h4 text-success">ORIGEN</h3>
+                    <p class="text-muted">Fue descubierto en 1967 en brotes simultáneos en Marburg y Frankfurt
+                        (Alemania) y Belgrado (Serbia), asociados a monos verdes africanos importados de Uganda. El
+                        huésped natural identificado es el murciélago de la fruta (Rousettus aegyptiacus). Brotes
+                        recientes han ocurrido en Guinea Ecuatorial (2023) y Ghana (2022).</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-3 p-md-4 border border-1 border-primary h-100">
+                    <h3 class="h4 text-primary">QUÉ ES?</h3>
+                    <p class="text-muted">La fiebre hemorrágica de Marburg es una enfermedad grave causada por un virus
+                        de la familia Filoviridae, estrechamente relacionado con el Ébola. Presenta una letalidad
+                        extremadamente alta y se transmite por contacto directo con fluidos corporales de
+                        personas infectadas o con animales portadores, principalmente murciélagos frugívoros.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-3 p-md-4 border border-1 border-danger h-100">
+                    <h3 class="h4 text-danger">¡PELIGRO REAL!</h3>
+                    <p class="text-muted">Este virus representa una amenaza grave con tasas de mortalidad de hasta 90%.
+                        Aunque menos conocido que el Ébola, comparte características clínicas y epidemiológicas
+                        similares. Su circulación se concentra principalmente en regiones de África subsahariana, donde
+                        representa un riesgo constante para la salud pública.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cta" class="container-fluid text-center py-5">
+        <div class="container">
+            <h3 class="h4" style="color: var(--text-dark);">Familia y Brotes</h3>
+            <p class="text-muted mb-4">El virus de Marburgo pertenece a la familia Filoviridae, que también incluye a
+                los ebolavirus. Los filovirus se caracterizan por su forma filamentosa y pleomórfica, que puede ser
+                larga y tubular, o ramificada y en forma de "U". El genoma del virus de Marburgo es una molécula de ARN
+                de sentido negativo monocatenario. El virión está envuelto y contiene siete proteínas estructurales que
+                son cruciales para la replicación y la evasión de la respuesta inmune del huésped.</p>
+            <a href="https://fundacionio.com/salud-io/enfermedades/virus/marburg-virus/" target="_blank"
+                class="btn btn-primary btn-lg rounded-0 px-4 px-md-5">Saber Más...</a>
+        </div>
+    </section>
+
+    <section id="secondary-content" class="container py-5">
+        <div class="row g-4">
+            <article class="col-md-6">
+                <div class="card h-100">
+                    <div class="row g-0 h-100">
+                        <div class="col-md-4">
+                            <img src="static/images/marburg-virus-outbreak-rwanda.jpg"
+                                class="img-fluid rounded-start h-100 w-100 object-fit-cover" alt="virus_marburg">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body d-flex flex-column h-100">
+                                <h5 class="card-title h6">Familia</h5>
+                                <p class="card-text text-muted small flex-grow-1">El virus de Marburgo pertenece a la
+                                    familia
+                                    Filoviridae, que también incluye a los ebolavirus. Los filovirus se caracterizan por
+                                    su forma filamentosa y
+                                    pleomórfica, que puede ser larga y tubular, o ramificada y en forma de "U".</p>
+                                <a href="#" class="btn btn-sm btn-outline-primary mt-auto align-self-start">Leer más</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="col-md-6">
+                <div class="card h-100">
+                    <div class="row g-0 h-100">
+                        <div class="col-md-4">
+                            <img src="static/images/descarga.png"
+                                class="img-fluid rounded-start h-100 w-100 object-fit-cover" alt="oms">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body d-flex flex-column h-100">
+                                <h5 class="card-title h6">OMS</h5>
+                                <p class="card-text text-muted small flex-grow-1">La OMS tiene como objetivo prevenir
+                                    los brotes de
+                                    enfermedad por el virus de Marburgo, para lo cual mantiene la vigilancia de la
+                                    enfermedad y presta apoyo a los países en situación de riesgo para que formulen
+                                    planes de preparación.</p>
+                                <a href="#" class="btn btn-sm btn-outline-primary mt-auto align-self-start">Leer más</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section id="primary-content" class="container py-5">
+        <article class="text-center">
+            <h2 class="h3" style="color: var(--text-dark);">Por qué este virus preocupa al mundo y cómo enfrentamos su desafío</h2>
+            <p class="text-muted mb-4">
+                Esto no es una película. Es una carrera contra el tiempo que se libra en laboratorios de máxima
+                seguridad y en zonas remotas de África. El virus de Marburg no perdona, no negocia y no distingue entre
+                fronteras.
+            </p>
+            <div class="ratio ratio-16x9 my-4">
+                <iframe src="resources/httpswwwyoutubecomwatchvv2jqle9mlc.mp4" title="Video sobre el virus de Marburg"
+                    allowfullscreen></iframe>
+            </div>
+            <p class="text-muted">
+                El virus de Marburg no es una crisis lejana. Es un recordatorio de que las amenazas virales siguen
+                evolucionando y que la vigilancia global es esencial. La ciencia avanza, pero la prevención sigue siendo
+                nuestra mayor arma.
+                <br>No pudiste ver el video? <a href="resources/MarburgVirus.docx" target="_blank">Obtener transcripción</a>
+            </p>
+        </article>
+    </section>
+
+    <footer id="footer" class="container-fluid py-5">
+        <div class="container text-center text-md-start">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <p class="mb-1">&copy; Copyright 2025 TodoSobre. All rights reserved.</p>
+                    <p class="small"><a href="#" class="text-decoration-none text-light opacity-75">Terms of Service</a>
+                        | <a href="#" class="text-decoration-none text-light opacity-75">Privacy</a></p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="d-flex justify-content-md-end justify-content-center gap-3">
+                        <a href="#" class="text-light opacity-75"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-light opacity-75"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-light opacity-75"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="static/js/bootstrap.min.js"></script>
+</body>
+
+</html>

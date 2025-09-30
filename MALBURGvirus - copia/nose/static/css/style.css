@@ -1,0 +1,121 @@
+/* Color Palette */
+:root {
+  --color-dark-main: #222442;
+  --color-dark-secondary: #121639;
+  --color-accent: #9cd9e5;
+  --color-light: #e9ecef;
+  --color-white: #ffffff;
+}
+
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+/* Header */
+.logo {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 2.5rem;
+  color: var(--color-moss);
+}
+
+.nav-link-custom {
+  color: #555;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.nav-link-custom:hover {
+  color: var(--color-radiate);
+}
+
+/* Hero Section */
+#hero-image .hero-content h2 {
+  color: var(--color-pearl);
+}
+
+/* Features Section */
+#features .border-success {
+  border-color: var(--color-herb) !important;
+}
+
+#features .text-success {
+  color: var(--color-herb) !important;
+}
+
+#features .border-primary {
+  border-color: var(--color-radiate) !important;
+}
+
+#features .text-primary {
+  color: var(--color-radiate) !important;
+}
+
+#features .border-danger {
+  border-color: var(--color-moss) !important;
+}
+
+#features .text-danger {
+  color: var(--color-moss) !important;
+}
+
+#features .h4 {
+  font-weight: bold;
+}
+
+/* CTA Section */
+#cta {
+  background-color: var(--color-gleam);
+}
+
+#cta h3 {
+  color: var(--color-moss);
+}
+
+#cta .btn-primary {
+  background-color: var(--color-radiate);
+  border-color: var(--color-radiate);
+}
+
+#cta .btn-primary:hover {
+  background-color: #d8680c;
+  border-color: #d8680c;
+}
+
+/* Secondary Content */
+.card-title {
+  font-weight: bold;
+  color: var(--color-moss);
+}
+
+.btn-primary {
+  background-color: var(--color-radiate);
+  border-color: var(--color-radiate);
+}
+
+.btn-primary:hover {
+  background-color: #d8680c;
+  border-color: #d8680c;
+}
+
+/* Primary Content */
+#primary-content h2 {
+  color: var(--color-moss);
+}
+
+/* Footer */
+#footer {
+  background-color: var(--color-moss);
+  color: var(--color-pearl);
+}
+
+#footer a {
+  color: var(--color-pearl);
+}
+
+#footer a:hover {
+  color: var(--color-gleam);
+}
